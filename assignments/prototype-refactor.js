@@ -8,44 +8,42 @@ Prototype Refactor
 
 */
 
-//Constructor functions
 //Parent
-function GameObject(attributes){
-    this.createdAt = attributes.createdAt;
-    this.name = attributes.name;
-    this.dimensions = attributes.dimensions;
-  }
-  GameObject.prototype.destroy = function (){
-    return `${this.name} was removed from the game.`;
-  };
+
+class GameObject {
+    constructor(attributes){
+        this.createdAt = attributes.createdAt,
+        this.name = attributes.name,
+        this.dimensions = attributes.dimensions
+        }
+        destroy(){
+            return `${this.name} was removed from the game.`;
+        }
+}  
   
-  //Constructor functions
+  
   //Child
-  function CharacterStats(attributes){
-    GameObject.call(this, attributes)
-    this.healthPoints = attributes.healthPoints;
-  };
-  
-  //Protoype
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  CharacterStats.prototype.takeDamage = function(){
-    return `${this.name} took damage.`;
-  };
-  
-  
-  // constructor functions
-  //Grandhcild
-  function Humanoid(attributes){
-    CharacterStats.call(this, attributes)
-    this.team = attributes.team;
-    this.weapons = attributes.weapons;
-    this.language =attributes.language;
+  class CharacterStats extends GameObject{
+      constructor(charAttributes){
+          super(charAttributes);
+          this.healthPoints = charAttributes.healthPoints;
+      }
+      takeDamage(){
+        return `${this.name} took damage.`;
+      }
   }
-  
-  //prototypes
-  Humanoid.prototype = Object.create(CharacterStats.prototype)
-  Humanoid.prototype.greet = function() {
-    return `${this.name} offers a geeting in ${this.language}. `;
+
+  //Grandhcild
+  class Humanoid extends CharacterStats{
+      constructor(humAttributes){
+          super(humAttributes);
+          this.team = humAttributes.team;
+          this.weapons = humAttributes.weapons;
+          this.language =humAttributes.language;
+      }
+      greet(){
+        return `${this.name} offers a geeting in ${this.language}. `;
+      }
   }
   
   //Objects
@@ -112,22 +110,15 @@ function GameObject(attributes){
   
   
     // Stretch task: 
-    // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-  function VillainStats(attributes){
-    Humanoid.call(this, attributes);
-  };
-  
-  VillainStats.prototype = Object.create(Humanoid.prototype);
-  
-  function HeroStats(attributes){
-    Humanoid.call(this, attributes)
-  };
-  
-  HeroStats.prototype = Object.create(Humanoid.prototype);
-  
+    // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
     // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-    
-    VillainStats.prototype.takingDamage = function(){
+    // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  class VillainStats extends Humanoid{
+      constructor(vilAttributes){
+          super(vilAttributes);
+      }
+      takingDamage(){
       let name = this.name;
       let health = this.healthPoints;
   
@@ -136,34 +127,38 @@ function GameObject(attributes){
        health -= 4
   
        if (health > 0){
-         return console.log(`${name} is taking damage, the current ${health} hp`)
+         return console.log(`${name} is taking damage, the current ${health} hp`);
        } else if (health <= 0){
          console.log(`${name} has died`);
        }
   
       };
   
-    };
-  
-    HeroStats.prototype.feelingPain = function(){
-      let name = this.name;
-      let health = this.healthPoints;
-  
-      return function() {
-  
-       health -= 2;
-       if (health > 0){
-        return console.log(`${name} is taking damage, the current ${health} hp`)
-       }else if (health <= 0){
-         console.log(`${name} has fallen`);
-       }
-  
       };
+  }  
   
-    };
-  
-    // * Create two new objects, one a villain and one a hero and fight it out with methods!
-  
+  class HeroStats extends Humanoid{
+      constructor(heroAttributes){
+          super(heroAttributes);
+      }
+      feelingPain(){
+        let name = this.name;
+        let health = this.healthPoints;
+    
+        return function() {
+    
+         health -= 2;
+         if (health > 0){
+          return console.log(`${name} is taking damage, the current ${health} hp`)
+         }else if (health <= 0){
+           console.log(`${name} has fallen`);
+         }
+    
+        };
+      }
+  }
+//hero and villain objects
+
     let hero = new HeroStats({
       createdAt: new Date(),
       dimensions: {
@@ -197,8 +192,10 @@ function GameObject(attributes){
       ],
       language: 'Evil speak',
     });
+    
   let takeDamage = villain.takingDamage();
   let  feelPain = hero.feelingPain();
+
   takeDamage();
   feelPain();
   takeDamage();
