@@ -9,22 +9,36 @@ class Person {
         this.location = attributes.location
     }
     speak(){
-        return `Hello my name is ${this.name}, I am from ${this.location}.`
+        console.log(`Hello my name is ${this.name}, I am from ${this.location}.`) 
     }
 }
 
-class Insturctor extends Person {
+class Instructor extends Person {
     constructor(instAttributes){
         super(instAttributes)
         this.specialty = instAttributes.specialty;
         this.favLanguage = instAttributes.favLanguage;
         this.catchPhrase = instAttributes.catchPhrase;
     }
-    demo(){
-        return `Today we are learning about ${subject}.`
+    demo(subject){
+        console.log(`Today we are learning about ${subject}.`) 
     }
-    grade(){
-        return `${this.name} receives a perfect score on ${this.subject}.`
+    grade(name, subject){
+        console.log(`${this.name} receives a perfect score on ${this.subject}.`) 
+    }
+}
+
+class ProjectManager extends Instructor{
+    constructor(pmAttributes){
+        super(pmAttributes)
+        this.gradClassName = pmAttributes.gradClassName;
+        this.favInstructor = pmAttributes.favInstructor;
+    }
+    standUp(channel){
+        console.log(`${this.name} announces to @${channel}, standy times!`) 
+    }
+    debugsCode(student, subject){
+        console.log(`${this.name} debugs ${student}'s code on ${subject}.`)
     }
 }
 
@@ -37,28 +51,14 @@ class Student extends Person{
     }
     listSubjects(){
         this.favSubjects.forEach(subjects => {
-            console.log(subject)
+            console.log(subjects)
         });
     }
-    prAssignment(){
-        return `${this.name} has submitted a PR for ${this.subjects}`
+    prAssignment(subject){
+        console.log(`${this.name} has submitted a PR for ${subject}`) 
     }
     sprintChallenge(subject){
-        return `${this.name} has begun sprint challenge on ${subject}`
-    }
-}
-
-class ProjectManager extends Instructor{
-    constructor(pmAttributes){
-        super(pmAttributes)
-        this.gradClassName = pmAttributes.gradClassName;
-        this.favInstructor = pmAttributes.favInstructor;
-    }
-    standUp(channel){
-        return `${this.name} announces to @${channel}, standy times!`
-    }
-    debugsCode(student, subject){
-        return `${this.name} debugs ${student}'s code on ${subject}.`
+        console.log( `${this.name} has begun sprint challenge on ${subject}`)
     }
 }
     
@@ -73,25 +73,25 @@ const fred = new Instructor({
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
     catchPhrase: `Don't forget the homies`
-  });
+});
 
-  const mike = new Instructor({
+const mike = new Instructor({
     name: 'Mike',
     location: 'Portland',
     age: 54,
     favLanguage: 'Python',
     specialty: 'Back-end',
     catchPhrase: `I code for fun.`
-  });
+});
 
-  const sarah = new Instructor({
+const sarah = new Instructor({
     name: 'Sarah',
     location: 'Mexico',
     age: 32,
     favLanguage: 'HTML',
     specialty: 'Front-end',
     catchPhrase: `Code till you drop!`
-  });
+});
 
 //Project Manager
 
@@ -104,17 +104,19 @@ const brandon = new ProjectManager({
     favLanguage: 'HTML',
     specialty: 'Front-end',
     catchPhrase: `Code till you drop!`
-  });
-const brandon = new ProjectManager({
-    name: 'Brandon',
+});
+
+const kaily = new ProjectManager({
+    name: 'Kaily',
     location: 'California',
     age: 23,
-    gradClassName: 'WEB17',
-    favInstructor: 'Brit',
+    gradClassName: 'WEB09',
+    favInstructor: 'Mike',
     favLanguage: 'React',
     specialty: 'Back-end',
     catchPhrase: `Coding tomorrow!`
 });
+
 const kevin = new ProjectManager({
     name: 'Kevin',
     location: 'Ohio',
@@ -149,8 +151,24 @@ const billy = new Student({
 const gail = new Student({
     name: 'Gail',
     age: 89,
-    location: '',
+    location: 'Port',
     previousBackground: 'Debt Collector',
     className: 'Web29',
     favSubjects: ['Python', 'Java', 'C++'],
 });
+
+console.log(billy)
+//Person method test
+gail.speak()
+//Instructor method test
+fred.demo('Java')
+fred.grade('Jon', 'Java')
+
+//PM method test
+brandon.standUp('Web22')
+brandon.debugsCode('Gail', 'Web22')
+
+//Students
+john.listSubjects('java')
+john.prAssignment('HTML')
+john.sprintChallenge('CSS')
