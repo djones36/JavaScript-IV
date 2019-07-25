@@ -157,6 +157,7 @@ class GameObject {
         };
       }
   }
+  
 //hero and villain objects
 
     let hero = new HeroStats({
@@ -192,7 +193,7 @@ class GameObject {
       ],
       language: 'Evil speak',
     });
-    
+
   let takeDamage = villain.takingDamage();
   let  feelPain = hero.feelingPain();
 
