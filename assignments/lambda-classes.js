@@ -23,8 +23,8 @@ class Instructor extends Person {
     demo(subject){
         console.log(`Today we are learning about ${subject}.`) 
     }
-    grade(name, subject){
-        console.log(`${this.name} receives a perfect score on ${this.subject}.`) 
+    grade(Student, subject){
+        console.log(`${Student.name} receives a perfect score on ${subject}.`) 
     }
 }
 
@@ -162,7 +162,7 @@ console.log(billy)
 gail.speak()
 //Instructor method test
 fred.demo('Java')
-fred.grade('Jon', 'Java')
+fred.grade(billy, 'Java')
 
 //PM method test
 brandon.standUp('Web22')
