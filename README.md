@@ -6,17 +6,17 @@ This challenge focuses on classes in JavaScript using the new `class` keyword.
 
 **Follow these steps to set up and work on your project:**
 
-* [ ] Create a forked copy of this project.
-* [ ] Add your project manager as collaborator on Github.
-* [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-* [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-* [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+* [ x] Create a forked copy of this project.
+* [ x] Add your project manager as collaborator on Github.
+* [x ] Clone your OWN version of the repository (Not Lambda's by mistake!).
+* [ x] Create a new branch: git checkout -b `<firstName-lastName>`.
+* [x ] Implement the project on your newly created `<firstName-lastName>` branch, commxitting changes regularly.
 * [ ] Push commits: git push origin `<firstName-lastName>`.
 
 **Follow these steps for completing your project.**
 
-* [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
-* [ ] Add your project manager as a reviewer on the pull-request
+* [ x] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
+* [x ] Add your project manager as a reviewer on the pull-request
 * [ ] Your project manager will count the project as complete by merging the branch back into master.
 
 ## Assignment Description
@@ -43,7 +43,7 @@ const fred = new Person({
 * **Complete** all of the exercises found in the assignment files.
 
 ## `prototype-refactor` - Take existing code and make it modern.
-
+x
 * You're going to work with your prototypes assignment you built out yesterday.
 * `Challenge:` **Convert** all of your constructors into ES6 Classes using the `class` and `extends` keywords. You should be able to run your same logs and they should build out the proper expected behaviors.
 
